@@ -19,6 +19,9 @@ const tracking = trackingJson.data
 db.sync({ force: true }).then(() => {
   server.listen(process.env.PORT, async () => {
     console.log('%s Server Levantado: 3001')
+    const pett = await Pet.findAll();
+    console.log(pett)
+    if(pett.length !== 0) return
     await Pet.bulkCreate(mascotas)
     await User.bulkCreate(users)
     await PetitionGet.bulkCreate(petitionGet)
